@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
-  private baseURL = `https://localhost:7199/UrunSatis/`
+  private baseURL = environment.apiUrl
   constructor(private http: HttpClient) { }
 
   getAllProducts(): Observable<any> {
-    return this.http.get(`${this.baseURL}GetAllProducts`)
+    return this.http.get(this.baseURL + 'GetAllProducts')
   }
 
   postData(data: any): Observable<any> {
