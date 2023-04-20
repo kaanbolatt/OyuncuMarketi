@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-prototype-builtins */
-
 import { Injectable } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { User } from 'app/interfaces/user.interface';
 import { environment } from 'environments/environment';
 declare var $: any;
@@ -25,7 +25,7 @@ export class CommonHelper {
 
   //#endregion current user
   private _currentUser: User;
-  constructor() { }
+  constructor(public formBuilder: FormBuilder) { }
 
   setCurrentUser(): User {
     if (this.isNullOrUndefined(localStorage.getItem('user_info')) || this.isNullOrWhiteSpace(localStorage.getItem('user_info'))) {
@@ -69,6 +69,21 @@ export class CommonHelper {
       return false;
     }
     return (typeof text === 'undefined' || text == null) || text.replace(/\s/g, '').length < 1;
+  }
+
+  mapToFormGroup(sourceObject: any, targetFormGroup: FormGroup) {
+    // eslint-disable-next-line guard-for-in
+    for (const key in targetFormGroup.controls) {
+      const control = targetFormGroup.get(key);
+      if (!this.isNullOrUndefined(sourceObject[key])) {
+      if (typeof (sourceObject[key]) === 'string') {
+          control?.setValue(sourceObject[key].toString());
+        } else {
+          control?.setValue(sourceObject[key]);
+        }
+      }
+      sourceObject[key] = control?.value;
+    }
   }
 
 

@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     if(this.ch.currentUser.roleId === Role.admin){
       var newRoutes = {
-        path: '/add-product', title: 'Ürün Ekle', icon: 'add_shopping_cart', class: ''
+        path: '/product-list', title: 'Ürün Yönetimi', icon: 'add_shopping_cart', class: ''
       }
       ROUTES.push(newRoutes)
     }

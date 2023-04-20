@@ -10,10 +10,11 @@
           </mat-select>
         </mat-form-field>  
         <div class="navbar-form" style="max-width: 300px;">
-          <div class="input-group no-border" style="margin-top: 10px; margin-left: 50px">
+          <div class="input-group no-border" style="margin-top: 15px; margin-left: 50px">
             <input [(ngModel)]="textSearch" type="text" value="" class="form-control" placeholder="Ürün Ara...">
             <button (click)="findProduct()" mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
-              <i class="material-icons">search</i>
+              <i class="material-icons" style="    background-color: red;
+              color: white;">search</i>
               <div class="ripple-container"></div>
             </button>
           </div>

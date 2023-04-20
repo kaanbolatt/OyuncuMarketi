@@ -38,19 +38,19 @@ export class CommonService {
     return this.http.get(this.baseURL + 'GetProductById?id=' + id)
   }
 
-  login(data: any): Observable<any> {
-    return this.http.post(`${this.baseURL}Login`, data)
+  productAddOrUpdate(data: any): Observable<any> {
+    return this.http.post(this.baseURL + 'ProductAddOrUpdate', data)
   }
 
-  postData(data: any): Observable<any> {
-    return this.http.post(`${this.baseURL}/post`, data)
+  login(data: any): Observable<any> {
+    return this.http.post(`${this.baseURL}Login`, data)
   }
 
   updateData(data: any, id: string): Observable<any> {
     return this.http.patch(`${this.baseURL}/update/${id}`, data)
   }
 
-  deleteData(id: string): Observable<any> {
-    return this.http.delete(`${this.baseURL}/delete/${id}`)
+  deleteProduct(id: number): Observable<any> {
+    return this.http.delete(`${this.baseURL}ProductDelete?id=${id}`)
   }
 }

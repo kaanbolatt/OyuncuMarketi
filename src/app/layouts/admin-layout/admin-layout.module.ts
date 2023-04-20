@@ -13,6 +13,13 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import { LoginComponent } from 'app/login/login.component';
 import { ProductDetailComponent } from 'app/product-detail/product-detail.component';
+import { ProductListAdminComponent } from 'app/product-list-admin/product-list-admin.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
+import { AddProductComponent } from 'app/add-product/add-product.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { ConfirmationDialogComponent } from 'app/confirmation-dialog/confirmation-dialog.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -25,12 +32,19 @@ import { ProductDetailComponent } from 'app/product-detail/product-detail.compon
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatToolbarModule
   ],
   declarations: [
     DashboardComponent,
     LoginComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ConfirmationDialogComponent,
+    ProductListAdminComponent,
+    AddProductComponent
   ]
 })
 
