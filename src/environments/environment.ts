@@ -6,4 +6,5 @@
 export const environment = {
   production: false,
   apiUrl: 'https://localhost:7199/UrunSatis/',
+  uiUrl: 'http://localhost:4200/',
 };

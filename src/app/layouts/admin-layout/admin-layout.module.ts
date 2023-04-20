@@ -11,6 +11,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
+import { LoginComponent } from 'app/login/login.component';
+import { ProductDetailComponent } from 'app/product-detail/product-detail.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -27,6 +29,8 @@ import {MatCardModule} from '@angular/material/card';
   ],
   declarations: [
     DashboardComponent,
+    LoginComponent,
+    ProductDetailComponent
   ]
 })
 

@@ -4,6 +4,7 @@ import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from "jquery";
 import { filter, Subscription } from 'rxjs';
+import { CommonHelper } from 'app/components/helpers/common-helper';
 
 @Component({
   selector: 'app-admin-layout',
@@ -15,7 +16,7 @@ export class AdminLayoutComponent implements OnInit {
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
 
-  constructor( public location: Location, private router: Router) {}
+  constructor( public location: Location, private router: Router, public ch: CommonHelper) {}
 
   ngOnInit() {
       const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
@@ -50,9 +51,9 @@ export class AdminLayoutComponent implements OnInit {
            elemSidebar.scrollTop = 0;
       });
       if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
-          let ps = new PerfectScrollbar(elemMainPanel);
-          ps = new PerfectScrollbar(elemSidebar);
-      }
+        let ps = new PerfectScrollbar(elemMainPanel);
+        ps = new PerfectScrollbar(elemSidebar);
+    }
 
       const window_width = $(window).width();
       let $sidebar = $('.sidebar');

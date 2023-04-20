@@ -1,3 +1,11 @@
 .example-card {
     max-width: 400px;
   }
+
+  .prod-price{
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: #001d48;
+  }
+  
