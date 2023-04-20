@@ -47,6 +47,7 @@ export class DashboardComponent implements OnInit {
     } else {
       this.productFilter.generalSearch = null;
     }
+
     this.commonService.getAllProducts(this.productFilter).subscribe((res) => {
       this.products = res;
     });
@@ -56,6 +57,5 @@ export class DashboardComponent implements OnInit {
   findProduct() {
     this.getProductsFiltered(this.productFilter.categoryId, this.textSearch);
   }
-
 
 }
