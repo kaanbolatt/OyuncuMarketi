@@ -2,27 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { CommonHelper } from 'app/components/helpers/common-helper';
 import { CommonService } from 'app/shared/services/common.service';
 import { Router } from '@angular/router';
-import { Products } from 'app/interfaces/product.interface';
 import { MatTableDataSource } from '@angular/material/table';
-import { ProductFilterDto } from 'app/components/models/product-filter';
-import { AddProductComponent } from 'app/add-product/add-product.component';
 import { ActionTypes } from 'app/enums/action-types.enum';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'app/confirmation-dialog/confirmation-dialog.component';
+import { Category } from 'app/interfaces/categories.interface';
+import { AddCategoryComponent } from 'app/add-category/add-category.component';
 
 
 @Component({
-  selector: 'app-product-list-admin',
-  templateUrl: './product-list-admin.component.html',
-  styleUrls: ['./product-list-admin.component.css']
+  selector: 'app-category-list-admin',
+  templateUrl: './category-list-admin.component.html',
+  styleUrls: ['./category-list-admin.component.css']
 })
-export class ProductListAdminComponent implements OnInit {
-  prodId: number;
-  products: Products[] = [];
-  displayedColumns: string[] = ['name', 'shortDescription', 'price', 'islemler'];
+export class CategoryListAdminComponent implements OnInit {
+  categoryId: number;
+  categories: Category[] = [];
+  displayedColumns: string[] = ['name', 'islemler'];
   dataSource = new MatTableDataSource(null)
-  productFilter = new ProductFilterDto();
-  dialogRefNewProduct: any;
+  dialogRefNewCategory: any;
 
   constructor(public commonService: CommonService, public ch: CommonHelper, public router: Router, private matDialog: MatDialog) { }
 
@@ -31,13 +29,14 @@ export class ProductListAdminComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
-    this.getAllProducts();
+    this.getAllCategories();
   }
 
-  getAllProducts() {
-    this.commonService.getAllProducts(this.productFilter).subscribe((res) => {
-      this.products = res;
-      this.dataSource = new MatTableDataSource(this.products);
+  getAllCategories() {
+    this.commonService.getAllCategories().subscribe((res) => {
+      this.categories = res;
+      this.categories.splice(0, 1);
+      this.dataSource = new MatTableDataSource(this.categories);
     })
   }
 
@@ -54,8 +53,8 @@ export class ProductListAdminComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onAddProduct(): void {
-    this.dialogRefNewProduct = this.matDialog.open(AddProductComponent, {
+  onAddCategory(): void {
+    this.dialogRefNewCategory = this.matDialog.open(AddCategoryComponent, {
       disableClose: true,
       panelClass: 'contact-form-dialog',
       width: '600px',
@@ -63,41 +62,41 @@ export class ProductListAdminComponent implements OnInit {
         action: ActionTypes.New
       }
     }).afterClosed().subscribe((res) => {
-      if(res != undefined){
-        this.ch.successMessage("Ürün başarıyla eklendi.")
-        this.getAllProducts();
+      if (res != undefined) {
+        this.ch.successMessage("Kategori başarıyla eklendi.")
+        this.getAllCategories();
       }
     })
   }
 
-  onEditProduct(product): void {
-    this.dialogRefNewProduct = this.matDialog.open(AddProductComponent, {
+  onEditCategory(category): void {
+    this.dialogRefNewCategory = this.matDialog.open(AddCategoryComponent, {
       disableClose: true,
       panelClass: 'contact-form-dialog',
       width: '600px',
       data: {
         action: ActionTypes.Edit,
-        product: product
+        category: category
       }
     }).afterClosed().subscribe((res) => {
-      if(res != undefined){
-        this.ch.successMessage("Ürün başarıyla güncellendi.")
-        this.getAllProducts();
+      if (res != undefined) {
+        this.ch.successMessage("Kategori başarıyla güncellendi.")
+        this.getAllCategories();
       }
     })
   }
 
   dialogRef: any;
-  onDeleteProduct(product: Products): void {
+  onDeleteCategory(category: Category): void {
 
     this.dialogRef = this.matDialog.open(ConfirmationDialogComponent, {
       width: '500px',
       data: {
         title: 'Ürün Sil',
-        confirmMessage: ' [' + product.name + '] isimli ürünü silmek istediğinize emin misiniz?',
+        confirmMessage: ' [' + category.name + '] isimli kategoriyi silmek istediğinize emin misiniz?',
         nameLabel: 'Ürün Adı',
-        toConfirmationMessage: 'Onaylıyorsanız lütfen, ürün adını alttaki kutuya yazın. [' + product.name + ']',
-        textControl: product.name,
+        toConfirmationMessage: 'Onaylıyorsanız lütfen, kategori adını alttaki kutuya yazın. [' + category.name + ']',
+        textControl: category.name,
         persistMessage: 'Bu işlem kesinlikle geri alınamaz..',
         confirmButton: "Sil"
       }
@@ -105,9 +104,10 @@ export class ProductListAdminComponent implements OnInit {
 
     this.dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.commonService.deleteProduct(product.id).subscribe(res => {
-          this.ch.successMessage("Ürün silindi.")
-          this.getAllProducts();
+        this.commonService.deleteCategory(category.id).subscribe(res => {
+          //todo burada sıkıntı var
+          this.ch.successMessage("Kategori silindi.")
+          this.getAllCategories();
         });
       }
     });

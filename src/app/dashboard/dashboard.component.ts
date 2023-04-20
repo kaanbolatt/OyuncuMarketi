@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { CommonHelper } from 'app/components/helpers/common-helper';
 import { Products } from 'app/interfaces/product.interface';
 import { CommonService } from 'app/shared/services/common.service';
@@ -16,6 +16,8 @@ export class DashboardComponent implements OnInit {
   categories: Category[] = [];
   productFilter = new ProductFilterDto();
   textSearch = "";
+
+  basketItem: any[] = [];
   constructor(private commonService: CommonService, private ch: CommonHelper, private router: Router) { }
 
   ngOnInit() {
@@ -56,6 +58,25 @@ export class DashboardComponent implements OnInit {
 
   findProduct() {
     this.getProductsFiltered(this.productFilter.categoryId, this.textSearch);
+  }
+
+  addBasket(prodId: number) {
+    const data = {
+      productId: prodId,
+      userId: this.ch.currentUser.id
+    }
+
+    this.commonService.basketAdd(data).subscribe((res) => {
+      if (res != "Böyle bir ürün satışta yok.") {
+        this.ch.successMessage(res);
+        this.commonService.getAllBasketItem(this.ch.currentUser.id).subscribe((res) => {
+          this.commonService.basketItem(res);
+          this.basketItem = res;
+        })
+      } else {
+
+      }
+    })
   }
 
 }

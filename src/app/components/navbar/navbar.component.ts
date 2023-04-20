@@ -3,6 +3,7 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { CommonHelper } from '../helpers/common-helper';
+import { CommonService } from 'app/shared/services/common.service';
 
 @Component({
     selector: 'app-navbar',
@@ -10,13 +11,14 @@ import { CommonHelper } from '../helpers/common-helper';
     styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+    baskets: any[] = []
     private listTitles: any[];
     location: Location;
     mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(location: Location, private element: ElementRef, private router: Router, public ch: CommonHelper) {
+    constructor(location: Location, private element: ElementRef, private router: Router, public ch: CommonHelper, public commonService: CommonService) {
         this.location = location;
         this.sidebarVisible = false;
     }
@@ -33,13 +35,29 @@ export class NavbarComponent implements OnInit {
                 this.mobile_menu_visible = 0;
             }
         });
+
+        if (this.ch.isLoggedIn()) {
+            this.getAllBasketItem();
+            this.commonService.basketItemSubscription.subscribe((res) => {
+                this.baskets = res;
+            })
+        }
     }
+
+    getAllBasketItem() {
+        this.commonService.getAllBasketItem(this.ch.currentUser.id).subscribe((res) => {
+            this.baskets = res;
+        })
+    }
+
 
     sidebarOpen() {
         const toggleButton = this.toggleButton;
         const body = document.getElementsByTagName('body')[0];
         setTimeout(function () {
-            toggleButton.classList.add('toggled');
+            if (toggleButton != undefined && toggleButton.classList != undefined) {
+                toggleButton.classList.add('toggled');
+            }
         }, 500);
 
         body.classList.add('nav-open');
@@ -48,7 +66,9 @@ export class NavbarComponent implements OnInit {
     };
     sidebarClose() {
         const body = document.getElementsByTagName('body')[0];
-        this.toggleButton.classList.remove('toggled');
+        if (this.toggleButton != undefined && this.toggleButton.classList != undefined) {
+            this.toggleButton.classList.remove('toggled');
+        }
         this.sidebarVisible = false;
         body.classList.remove('nav-open');
     };
@@ -131,5 +151,19 @@ export class NavbarComponent implements OnInit {
         setTimeout(() => {
             window.location.href = this.ch.getUiUrl();
         }, 2000);
+    }
+
+    removeItem(id: number) {
+        this.commonService.deleteBasketItem(id).subscribe((res) => {
+            this.ch.successMessage(res);
+            this.getAllBasketItem();
+        })
+    }
+
+    deleteAllBasketItem() {
+        this.commonService.allBasketProductDelete(this.ch.currentUser.id).subscribe((res) => {
+            this.ch.successMessage(res);
+            this.getAllBasketItem();
+        })
     }
 }

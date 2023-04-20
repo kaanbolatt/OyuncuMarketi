@@ -45,4 +45,21 @@ export class ProductDetailComponent implements OnInit {
     this.router.navigate(['/dashboard']);
   }
 
+  addBasket(prodId: number) {
+    const data = {
+      productId: prodId,
+      userId: this.ch.currentUser.id
+    }
+
+    this.commonService.basketAdd(data).subscribe((res) => {
+      if (res != "Böyle bir ürün satışta yok.") {
+        this.ch.successMessage(res);
+        this.commonService.getAllBasketItem(this.ch.currentUser.id).subscribe((res) => {
+          this.commonService.basketItem(res);
+        })
+      } else {
+      }
+    })
+  }
+
 }

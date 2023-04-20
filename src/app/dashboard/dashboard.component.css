@@ -14,3 +14,10 @@
   max-height: unset !important;
   overflow: auto !important;
 }
+
+.mat-card-image {
+  width: calc(100% + 32px);
+  display: block;
+  overflow: hidden;
+  margin: 0 auto;
+}

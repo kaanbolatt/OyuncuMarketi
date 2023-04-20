@@ -20,6 +20,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AddProductComponent } from 'app/add-product/add-product.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ConfirmationDialogComponent } from 'app/confirmation-dialog/confirmation-dialog.component';
+import { CategoryListAdminComponent } from 'app/category-list-admin/category-list-admin.component';
+import { AddCategoryComponent } from 'app/add-category/add-category.component';
+import { RegisterComponent } from 'app/register/register.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -41,10 +44,13 @@ import { ConfirmationDialogComponent } from 'app/confirmation-dialog/confirmatio
   declarations: [
     DashboardComponent,
     LoginComponent,
+    RegisterComponent,
     ProductDetailComponent,
     ConfirmationDialogComponent,
     ProductListAdminComponent,
-    AddProductComponent
+    CategoryListAdminComponent,
+    AddProductComponent,
+    AddCategoryComponent
   ]
 })
 

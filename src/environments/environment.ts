@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7199/UrunSatis/',
+  apiUrl: 'https://localhost:7199/api/UrunSatis/',
   uiUrl: 'http://localhost:4200/',
 };

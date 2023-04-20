@@ -30,6 +30,10 @@ export class SidebarComponent implements OnInit {
         path: '/product-list', title: 'Ürün Yönetimi', icon: 'add_shopping_cart', class: ''
       }
       ROUTES.push(newRoutes)
+      var newRoutes = {
+        path: '/category-list', title: 'Kategori Yönetimi', icon: 'attach_file', class: ''
+      }
+      ROUTES.push(newRoutes)
     }
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }

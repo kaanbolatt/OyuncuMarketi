@@ -25,7 +25,6 @@ export class AddProductComponent implements OnInit {
   constructor(public matDialogRef: MatDialogRef<AddProductComponent>, public commonService: CommonService, public ch: CommonHelper, public router: Router, @Inject(MAT_DIALOG_DATA) private data: any) {
     this.action = data.action as ActionTypes;
     this.product = data.product as Products;
-    console.log("🚀 ~ file: add-product.component.ts:28 ~ AddProductComponent ~ constructor ~ this.product:", this.product)
   }
 
   ngOnInit() {
