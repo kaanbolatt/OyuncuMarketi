@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonHelper } from '../helpers/common-helper';
+import { Route } from '@angular/router';
+import { Role } from 'app/enums/role.enum';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -23,6 +25,12 @@ export class SidebarComponent implements OnInit {
   constructor(public ch: CommonHelper) { }
 
   ngOnInit() {
+    if(this.ch.currentUser.roleId === Role.admin){
+      var newRoutes = {
+        path: '/add-product', title: 'Ürün Ekle', icon: 'add_shopping_cart', class: ''
+      }
+      ROUTES.push(newRoutes)
+    }
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
   isMobileMenu() {
