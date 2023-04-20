@@ -28,21 +28,22 @@
                                 </mat-card-header>
                             </mat-card>
                         </div>
-                        <mat-card *ngIf="baskets?.length > 0">
+                        <mat-card  *ngIf="baskets?.length > 0">
                             <mat-card-header>
                               <mat-card-title>Sepetim ({{baskets?.length}})</mat-card-title>
                             </mat-card-header>
                             <mat-card-content *ngFor="let item of baskets">
                               <div >
                                 <img mat-card-sm-image [src]="item.productImage" >
-                                {{ item.productName }} - ${{ item.productPrice }}
-                                <button mat-icon-button style="float: right;" (click)="removeItem(item.basketId)">
+                                {{ item.productName }} - <span class="prod-price">{{ item.productPrice }} ₺</span>
+                                <button mat-icon-button style="float: right; margin-top: 2%;" (click)="removeItem(item.basketId)">
                                   <mat-icon>remove_shopping_cart</mat-icon>
                                 </button>
                               </div>
                             </mat-card-content>
                             <mat-card-actions>
-                              <button mat-raised-button color="warn" (click)="deleteAllBasketItem()">Sepeti Temizle</button>
+                                <button mat-raised-button color="warn" (click)="deleteAllBasketItem()">Sepeti Temizle</button>
+                               <span class="prod-price2">Toplam Tutar: {{ totalPrice }} ₺</span>
                             </mat-card-actions>
                         </mat-card>
                     </div>

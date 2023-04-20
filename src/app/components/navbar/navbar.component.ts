@@ -18,6 +18,8 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
 
+    totalPrice = 0;
+
     constructor(location: Location, private element: ElementRef, private router: Router, public ch: CommonHelper, public commonService: CommonService) {
         this.location = location;
         this.sidebarVisible = false;
@@ -37,16 +39,24 @@ export class NavbarComponent implements OnInit {
         });
 
         if (this.ch.isLoggedIn()) {
+            this.totalPrice = 0;
             this.getAllBasketItem();
             this.commonService.basketItemSubscription.subscribe((res) => {
                 this.baskets = res;
+                this.baskets.forEach(element => {
+                    this.totalPrice += element.productPrice;
+                });
             })
         }
     }
 
     getAllBasketItem() {
+        this.totalPrice = 0;
         this.commonService.getAllBasketItem(this.ch.currentUser.id).subscribe((res) => {
             this.baskets = res;
+            this.baskets.forEach(element => {
+                this.totalPrice += element.productPrice;
+            });
         })
     }
 
