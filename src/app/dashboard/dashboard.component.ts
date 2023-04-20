@@ -29,7 +29,9 @@ export class DashboardComponent implements OnInit {
 
     this.commonService.getAllCategories().subscribe((res) => {
       this.categories = res;
-    })
+    });
+
+
   }
 
   gotoDetail(prodId: number) {
@@ -72,7 +74,7 @@ export class DashboardComponent implements OnInit {
         this.commonService.getAllBasketItem(this.ch.currentUser.id).subscribe((res) => {
           this.commonService.basketItem(res);
           this.basketItem = res;
-        })
+        });
       } else {
 
       }

@@ -16,10 +16,10 @@ export class RegisterComponent implements OnInit {
   password = '';
   registerModel = new Register();
 
-    constructor(public commonService: CommonService, public ch: CommonHelper, public router: Router) { }
+  constructor(public commonService: CommonService, public ch: CommonHelper, public router: Router) { }
 
   ngOnInit() {
-    if(this.ch.isLoggedIn()){
+    if (this.ch.isLoggedIn()) {
       this.gotoHomePage();
     }
   }
@@ -36,18 +36,18 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  gotoHomePage(){
+  gotoHomePage() {
     this.router.navigate(['/dashboard']);
 
   }
 
-  gotoLogin(){
+  gotoLogin() {
     this.router.navigate(['/login']);
 
   }
 
   register() {
-    
+
   }
 
 }

@@ -23,6 +23,8 @@
     </ng-container>
 </mat-dialog-content>
 <mat-dialog-actions style="float: right;" class="mt-12">
-    <button mat-stroked-button color="primary" [disabled]="commitMessage && !message" (click)="dialogRef.close(false)">İptal</button>
-    <button mat-stroked-button color="warn" class="mr-16" [disabled]="disableButton" (click)="dialogRef.close({result: true, commitMessage: message})">Sil</button>
+    <button mat-stroked-button color="primary" [disabled]="commitMessage && !message"
+        (click)="dialogRef.close(false)">İptal</button>
+    <button mat-stroked-button color="warn" class="mr-16" [disabled]="disableButton"
+        (click)="dialogRef.close({result: true, commitMessage: message})">Sil</button>
 </mat-dialog-actions>

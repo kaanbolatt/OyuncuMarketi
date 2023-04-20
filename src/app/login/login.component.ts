@@ -16,10 +16,10 @@ export class LoginComponent implements OnInit {
   loginValid = true;
   loginModel = new Login();
 
-    constructor(public commonService: CommonService, public ch: CommonHelper, public router: Router) { }
+  constructor(public commonService: CommonService, public ch: CommonHelper, public router: Router) { }
 
   ngOnInit() {
-    if(this.ch.isLoggedIn()){
+    if (this.ch.isLoggedIn()) {
       this.gotoHomePage();
     }
   }
@@ -33,13 +33,15 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user_info', JSON.stringify(res));
         this.ch.setCurrentUser();
         this.gotoHomePage();
+        this.commonService.loginSubs(true);
       } else {
+        this.commonService.loginSubs(false);
         this.ch.errorMessage("Kullanıcı adı veya şifreniz hatalı!");
       }
     })
   }
 
-  gotoHomePage(){
+  gotoHomePage() {
     this.router.navigate(['/dashboard']);
 
   }

@@ -15,7 +15,7 @@ export class ConfirmationDialogComponent implements OnInit {
     public subTitle: string;
     public confirmButton: string;
     public cancelButton: string;
-    public persistMessage :string;
+    public persistMessage: string;
     public commitMessage = false;
     public disableButton = true;
     public applyConfirmationRule = true;
@@ -37,10 +37,10 @@ export class ConfirmationDialogComponent implements OnInit {
     ) {
         // if applyConfirmationRule was not sended by the parent and it equels the undefined, we set it true as default.
         this.applyConfirmationRule = data.applyConfirmationRule === undefined ? true : data.applyConfirmationRule;
-        
+
         // if applyConfirmationRule is true, make button is disabled.
         this.applyConfirmationRule ? this.disableButton = true : this.disableButton = false;
-        
+
         this.persistMessage = data.persistMessage;
         this.confirmMessage = data.confirmMessage;
         this.title = data.title;

@@ -10,9 +10,9 @@ import { RegisterComponent } from 'app/register/register.component';
 export const AdminLayoutRoutes: Routes = [
 
     { path: 'dashboard', component: DashboardComponent },
-    { path: 'login', component: LoginComponent},
-    { path: 'register', component: RegisterComponent},
-    { path: 'product-detail', component: ProductDetailComponent},
-    { path: 'product-list', component: ProductListAdminComponent},
-    { path: 'category-list', component: CategoryListAdminComponent},
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'product-detail', component: ProductDetailComponent },
+    { path: 'product-list', component: ProductListAdminComponent },
+    { path: 'category-list', component: CategoryListAdminComponent },
 ];

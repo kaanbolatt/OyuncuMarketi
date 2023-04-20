@@ -31,7 +31,7 @@ export class AddProductComponent implements OnInit {
     this.createForm();
     if (this.action === ActionTypes.New) {
       this.dialogtitle = "Ürün Ekle";
-      
+
     } else if (this.action === ActionTypes.Edit) {
       this.dialogtitle = "Ürün Güncelle";
       this.ch.mapToFormGroup(this.product, this.productForm);

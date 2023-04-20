@@ -31,7 +31,7 @@ export class AddCategoryComponent implements OnInit {
     this.createForm();
     if (this.action === ActionTypes.New) {
       this.dialogtitle = "Kategori Ekle";
-      
+
     } else if (this.action === ActionTypes.Edit) {
       this.dialogtitle = "Kategori Güncelle";
       this.ch.mapToFormGroup(this.category, this.categoryForm);

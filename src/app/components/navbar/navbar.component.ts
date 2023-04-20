@@ -38,16 +38,20 @@ export class NavbarComponent implements OnInit {
             }
         });
 
-        if (this.ch.isLoggedIn()) {
-            this.totalPrice = 0;
-            this.getAllBasketItem();
-            this.commonService.basketItemSubscription.subscribe((res) => {
-                this.baskets = res;
-                this.baskets.forEach(element => {
-                    this.totalPrice += element.productPrice;
-                });
-            })
-        }
+        this.commonService.loginSubscription.subscribe((res) => {
+
+
+            if (this.ch.isLoggedIn()) {
+                this.totalPrice = 0;
+                this.getAllBasketItem();
+                this.commonService.basketItemSubscription.subscribe((res) => {
+                    this.baskets = res;
+                    this.baskets.forEach(element => {
+                        this.totalPrice += element.productPrice;
+                    });
+                })
+            }
+        })
     }
 
     getAllBasketItem() {

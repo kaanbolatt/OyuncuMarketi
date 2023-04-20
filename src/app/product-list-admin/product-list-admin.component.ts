@@ -63,7 +63,7 @@ export class ProductListAdminComponent implements OnInit {
         action: ActionTypes.New
       }
     }).afterClosed().subscribe((res) => {
-      if(res != undefined){
+      if (res != undefined) {
         this.ch.successMessage("Ürün başarıyla eklendi.")
         this.getAllProducts();
       }
@@ -80,7 +80,7 @@ export class ProductListAdminComponent implements OnInit {
         product: product
       }
     }).afterClosed().subscribe((res) => {
-      if(res != undefined){
+      if (res != undefined) {
         this.ch.successMessage("Ürün başarıyla güncellendi.")
         this.getAllProducts();
       }

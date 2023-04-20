@@ -76,7 +76,7 @@ export class CommonHelper {
     for (const key in targetFormGroup.controls) {
       const control = targetFormGroup.get(key);
       if (!this.isNullOrUndefined(sourceObject[key])) {
-      if (typeof (sourceObject[key]) === 'string') {
+        if (typeof (sourceObject[key]) === 'string') {
           control?.setValue(sourceObject[key].toString());
         } else {
           control?.setValue(sourceObject[key]);
