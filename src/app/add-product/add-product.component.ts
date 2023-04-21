@@ -41,7 +41,6 @@ export class AddProductComponent implements OnInit {
   createForm() {
     this.commonService.getAllCategories().subscribe((res) => {
       this.categories = res;
-      this.categories.splice(0, 1);
     })
     this.productForm = this.ch.formBuilder.group({
       id: ['0'],

@@ -28,7 +28,15 @@ export class DashboardComponent implements OnInit {
     this.getProductsFiltered(null);
 
     this.commonService.getAllCategories().subscribe((res) => {
-      this.categories = res;
+      const allShow = {
+        id: 999999,
+        name: 'Tüm Ürünler'
+      };
+      this.categories.push(allShow)
+      res.forEach(element => {
+        this.categories.push(element)
+        
+      });
     });
 
 
@@ -41,7 +49,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getProductsFiltered(categorieId: number, searchText?: string) {
-    if (categorieId != 1) {
+    if (categorieId != 999999) {
       this.productFilter.categoryId = categorieId;
     } else {
       this.productFilter.categoryId = null;

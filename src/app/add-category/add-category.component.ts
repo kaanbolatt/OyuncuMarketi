@@ -19,7 +19,7 @@ export class AddCategoryComponent implements OnInit {
   action: ActionTypes;
   actionTypesEnum: typeof ActionTypes = ActionTypes;
   category: any;
-  categories: Category[] = [];
+  categories: any[] = [];
   dialogtitle: string;
 
   constructor(public matDialogRef: MatDialogRef<AddCategoryComponent>, public commonService: CommonService, public ch: CommonHelper, public router: Router, @Inject(MAT_DIALOG_DATA) private data: any) {
@@ -39,10 +39,6 @@ export class AddCategoryComponent implements OnInit {
   }
 
   createForm() {
-    this.commonService.getAllCategories().subscribe((res) => {
-      this.categories = res;
-      this.categories.splice(0, 1);
-    })
     this.categoryForm = this.ch.formBuilder.group({
       id: [0],
       name: ['', Validators.required],
